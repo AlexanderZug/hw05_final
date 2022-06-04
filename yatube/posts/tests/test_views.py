@@ -7,7 +7,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..models import Group, Post, User, Follow
+from ..models import Follow, Group, Post, User
 
 
 class PageContent(NamedTuple):

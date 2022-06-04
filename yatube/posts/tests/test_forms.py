@@ -4,8 +4,8 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..forms import PostForm, CommentForm
-from ..models import Group, Post, User, Comment
+from ..forms import CommentForm, PostForm
+from ..models import Comment, Group, Post, User
 
 
 class PostCreateFormTests(TestCase):
@@ -134,15 +134,16 @@ class PostCreateFormTests(TestCase):
     def test_forms_help_text_commit(self):
         """Тестирование help_text из класса Meta model Commit."""
         help_text_forms = PostCreateFormTests.commit_form
-        self.assertEqual(help_text_forms['text'].help_text, 'Текст комментария')
+        self.assertEqual(help_text_forms['text'].help_text,
+                         'Текст комментария')
 
     def test_forms_empty_label(self):
         """Тестирование empty_label и placeholder из класса Meta."""
         group_label = PostCreateFormTests.form.fields['group'].empty_label
         placeholder = PostCreateFormTests.form.fields['text'].widget.attrs[
             'placeholder']
-        placeholder_commit = PostCreateFormTests.commit_form.fields['text'].widget.attrs[
-            'placeholder']
+        placeholder_commit = PostCreateFormTests.commit_form.fields[
+            'text'].widget.attrs['placeholder']
         fields = {
             f'{group_label}': 'Группа сама себя не выберет, '
                               'действуй! 😎',

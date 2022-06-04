@@ -5,7 +5,7 @@ from typing import NamedTuple
 
 from django.test import Client, TestCase
 
-from ..models import Group, Post, User, Comment
+from ..models import Comment, Group, Post, User
 
 
 class Url(NamedTuple):
