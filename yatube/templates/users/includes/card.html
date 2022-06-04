@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <div class="col-md-8 p-5">
+    <div class="card">
+      <div class="card-header">{{ card_header }}</div>
+      {% if form_tag %}
+      <div class="card-body">
+      {% include 'includes/error_handler_for_forms.html' %}
+      {% include 'users/includes/form.html' with button_text=button tag_a_text=a_text a_tag_access=a_access %}
+      </div>
+      {% else %}
+      <div class="card-body"><p>{{ card_body }}</p>
+        {% if user_password %} <a href="{% url 'users:login' %}">войти</a> {% endif %}
+      {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
