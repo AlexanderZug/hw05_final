@@ -1,13 +1,17 @@
+import tempfile
+from shutil import rmtree
 from typing import NamedTuple
 
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from ..models import Follow, Group, Post, User
+
+TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
 
 class PageContent(NamedTuple):
@@ -17,6 +21,7 @@ class PageContent(NamedTuple):
     value: str
 
 
+@override_settings(MEDIA_ROOT=TEMP_MEDIA_ROOT)
 class PostsViewTests(TestCase):
     @classmethod
     def setUpClass(cls):
@@ -77,10 +82,16 @@ class PostsViewTests(TestCase):
             'text': forms.fields.CharField,
         }
 
+    @classmethod
+    def tearDownClass(cls):
+        rmtree(settings.MEDIA_ROOT, ignore_errors=True)
+        super().tearDownClass()
+
     def setUp(self):
         self.authorized_client = Client()
         self.authorized_client.force_login(
             PostsViewTests.user)
+        cache.clear()
 
     def test_views_use_correct_template(self):
         """URL-адрес использует соответствующий шаблон."""
@@ -234,6 +245,7 @@ class PostsNewPostTest(TestCase):
     def setUp(self):
         self.authorized_client = Client()
         self.authorized_client.force_login(PostsNewPostTest.user)
+        cache.clear()
 
     def test_new_post_index(self):
         """Новый пост появляется на главной странице."""
