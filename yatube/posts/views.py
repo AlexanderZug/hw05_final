@@ -137,7 +137,9 @@ def follow_index(request):
     """Отображение подписок."""
     post = Post.objects.filter(author__following__user=request.user)
     page_obj = paginator(request, post)
-    context = {'page_obj': page_obj}
+    context = {
+        'page_obj': page_obj,
+    }
     return render(request, 'posts/follow.html', context)
 
 

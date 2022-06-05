@@ -2,7 +2,7 @@
 {% load cache %}
 {% block title %} Подписки {% endblock %}
 {% block content %}
-{% include 'includes/switcher.html' %}
+{% include 'includes/switcher.html' with follow=True %}
 {% cache 20 index_page with page_obj %}
   {% for post in page_obj %}
     {% include 'includes/posts.html' %}
