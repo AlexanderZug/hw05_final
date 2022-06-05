@@ -1,5 +1,18 @@
-{% extends "base.html" %}
-{% block title %}Custom 500{% endblock %}
-{% block content %}
-    <h1>Custom 500</h1>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/error_500.css' %}">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="box">
+        <h1>500</h1>
+        <p>Sorry, it's me, not you.</p>
+        <p>&#58;&#40;</p>
+        <p><a href="{% url 'posts:index' %}">Let me try again!</a></p>
+      </div>
+    </div>
+  </body>
+</html>

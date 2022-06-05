@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Custom 403{% endblock %}
 {% block content %}
-    <h1>Custom 403</h1>
+    <h1>Сначала авторизация, потом просмотр!</h1>
+    <p><a href="{% url 'users:login' %}">Log in!</a></p>
 {% endblock %}
