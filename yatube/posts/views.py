@@ -129,6 +129,7 @@ def add_comment(request, post_id):
         comment.author = request.user
         comment.post = post
         comment.save()
+        form.save_m2m()
     return redirect('posts:post_detail', post_id)
 
 

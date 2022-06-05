@@ -194,20 +194,31 @@ class PostsPaginatorTest(TestCase):
                     'username': cls.user.username}),
                 value='?page=2',
             ),
+            'follow': PageContent(
+                name=reverse('posts:follow_index'),
+                value='?page=2',
+            ),
         }
 
     def setUp(self):
-        self.authorized_client = Client()
-        self.authorized_client.force_login(
-            PostsPaginatorTest.user)
+        self.user_follower = User.objects.create(
+            username='follower'
+        )
+        self.follower_client = Client()
+        self.follower_client.force_login(self.user_follower)
+        self.follower_client.get(
+            reverse('posts:profile_follow',
+                    kwargs={'username': self.user.username})
+        )
 
     def test_paginator_first_page(self):
         """
-        Тестирование Paginator для index, profile, group_list.
+        Тестирование Paginator для index,
+        profile, group_list, follow_index.
         Выводит 10 постов.
         """
         for url in self.paginator.values():
-            response = self.client.get(url.name)
+            response = self.follower_client.get(url.name)
             self.assertEqual(
                 len(response.context.get('page_obj').object_list),
                 settings.POSTS_PER_PAGE)
@@ -219,7 +230,7 @@ class PostsPaginatorTest(TestCase):
         posts_number_on_next_page = (PostsPaginatorTest.test_posts_paginator
                                      - settings.POSTS_PER_PAGE)
         for url in self.paginator.values():
-            response = self.client.get(url.name + url.value)
+            response = self.follower_client.get(url.name + url.value)
             self.assertEqual(
                 len(response.context.get('page_obj').object_list),
                 posts_number_on_next_page)
