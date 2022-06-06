@@ -3,12 +3,9 @@ import string
 from http import HTTPStatus
 from typing import NamedTuple
 
-from django.conf.urls import handler500
-from django.http import request
 from django.test import Client, TestCase
 
 from ..models import Comment, Group, Post, User
-from ...yatube import settings
 
 
 class Url(NamedTuple):
