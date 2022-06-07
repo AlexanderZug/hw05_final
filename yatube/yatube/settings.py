@@ -24,13 +24,11 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 SECRET_KEY = 'v22#!j*((n3h45^2m8%51o*5g9v1hn+_bi1an^s73$(-i5z^47'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
+    'www.AlexanderZug.pythonanywhere.com',
+    'AlexanderZug.pythonanywhere.com',
 ]
 
 # Application definition
