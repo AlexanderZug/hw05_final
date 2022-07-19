@@ -13,9 +13,11 @@ git clone https://github.com/AlexanderZug/yatube.git
 ## Запуск проекта в dev-режиме
 - Установите и активируйте виртуальное окружение
 - Установите зависимости из файла requirements.txt
+
 ```
 pip install -r requirements.txt
 ``` 
+- Сделайте миграции
 - В папке с файлом manage.py выполните команду:
 ```
 python3 manage.py runserver
