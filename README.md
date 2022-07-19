@@ -7,7 +7,7 @@
 > 
 ## Клонируйте репозиторий
 ```
-git clone https://github.com/AlexanderZug/yatube_project.git
+git clone https://github.com/AlexanderZug/yatube.git
 ```
 
 ## Запуск проекта в dev-режиме
