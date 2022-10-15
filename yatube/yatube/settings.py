@@ -29,10 +29,9 @@ SECRET_KEY = 'not_secret'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
+    '51.250.111.106',
     '127.0.0.1',
-    '[::1]',
-    'testserver',
+    'localhost'
 ]
 
 # Application definition
