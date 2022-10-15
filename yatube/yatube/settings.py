@@ -29,7 +29,7 @@ SECRET_KEY = 'not_secret'
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '158.160.13.33',
+    '158.160.10.56',
     '127.0.0.1',
     'localhost'
 ]
